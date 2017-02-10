@@ -2,9 +2,9 @@
 
 namespace AppBundle\Repository;
 
-use AppBundle\Entity\Hospital;
+use AppBundle\Entity\Doctor;
 
-class HospitalRepository implements RepositoryInterface
+class DoctorRepository implements RepositoryInterface
 {
     private $doctrine;
 
@@ -13,11 +13,11 @@ class HospitalRepository implements RepositoryInterface
         $this->doctrine = $doctrine;
     }
 
-    /** @return Hospital */
+    /** @return Doctor */
 	public function selectById($id)
 	{
         $entity = $this->doctrine
-            ->getRepository('AppBundle:Hospital')
+            ->getRepository('AppBundle:Doctor')
             ->find($id);
 
         return $entity;

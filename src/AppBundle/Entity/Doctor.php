@@ -2,13 +2,14 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="hospital")
+ * @ORM\Table(name="doctor")
  */
-class Hospital
+class Doctor
 {
     /**
      * @ORM\Column(type="integer")
@@ -23,18 +24,19 @@ class Hospital
 	private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Patient", mappedBy="hospital")
+     * @ORM\OneToMany(targetEntity="Patient", mappedBy="doctor")
      */
-    private $pacients;
+    private $patients;
 
     /**
      * Doctor constructor.
      */
     public function __construct()
     {
-        $this->pacients = ArrayCollection();
+        $this->patients = ArrayCollection();
     }
-	/**
+
+    /**
 	 * @return mixed
 	 */
 	public function getId()
@@ -44,7 +46,7 @@ class Hospital
 
 	/**
 	 * @param mixed $id
-	 * @return Hospital
+	 * @return Patient
 	 */
 	public function setId($id)
 	{
@@ -62,7 +64,7 @@ class Hospital
 
 	/**
 	 * @param mixed $name
-	 * @return Hospital
+	 * @return Patient
 	 */
 	public function setName($name)
 	{
@@ -71,11 +73,10 @@ class Hospital
 	}
 
     /**
-     * @param mixed $name
-     * @return Hospital
+     * @return Patient
      */
-    public function getPacients()
+    public function getPatients()
     {
-        return $this->pacients;
+        return $this->patients;
     }
 }

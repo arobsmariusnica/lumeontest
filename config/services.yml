@@ -4,9 +4,6 @@ parameters:
 #    parameter_name: value
 
 services:
-    app.pacient:
-        class: AppBundle\Services\PacientService
-        arguments:    ['%app.pacient.em%', '%app.pacient.doctor%', '%app.pacient.hospital%', '%app.pacient.em%']
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]

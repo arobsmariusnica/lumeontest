@@ -2,23 +2,55 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="patient")
+ */
 class Patient
 {
 	const GENDER_MALE = 1;
 	const GENDER_FEMALE = 2;
 	const GENDER_OTHER = 3;
 
-	/** @var  int */
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
 	private $id;
-	/** @var  string */
-	private $name;
-	/** @var  \DateTime */
+
+    /**
+     * @Assert\NotBlank
+     * @ORM\Column(type="string", length=100)
+     */
+	public $name;
+
+    /**
+     * @Assert\NotBlank
+     * @ORM\Column(type="datetime")
+     */
 	private $dob;
-	/** @var  string */
+
+    /**
+     * @Assert\NotBlank
+     * @ORM\Column(type="string", length=10)
+     */
 	private $gender;
-	/** @var  Hospital */
-	private $hospital;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Doctor", inversedBy="pacients")
+     * @ORM\JoinColumn(name="doctor_id", referencedColumnName="id")
+     */
+	private $doctor;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Hospital", inversedBy="pacients")
+     * @ORM\JoinColumn(name="hospital_id", referencedColumnName="id")
+     */
+    private $hospital;
 
 	/**
 	 * @return int
@@ -109,6 +141,24 @@ class Patient
 		$this->hospital = $hospital;
 		return $this;
 	}
+
+    /**
+     * @return Hospital
+     */
+    public function getDoctor()
+    {
+        return $this->doctor;
+    }
+
+    /**
+     * @param Doctor $doctor
+     * @return Patient
+     */
+    public function setDoctor($doctor)
+    {
+        $this->doctor = $doctor;
+        return $this;
+    }
 
 
 }
