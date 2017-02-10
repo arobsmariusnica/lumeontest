@@ -25,6 +25,12 @@ Please answer the following question textually.
 
 The file web/showhospitalpatients.php is intended to retrieve a list of patients for a given hospital and return that in json format. Are there any comments you would like to make? What could be improved about the code ?
 
+Answer:
+
+The endpoint should be created using symfony app files.
+The response text should be translated and not static.
+The validation is incomplete, the developer is checking only if hospitalId is received on request. The existance of the hospital on the database needs to be verified as well.
+
 #### Exercise
 
 This is the coding portion of the test. Please write code as well as you can using existing entities/repositories where appropriate and adding classes/files where needed.
